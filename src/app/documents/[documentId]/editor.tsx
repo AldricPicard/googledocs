@@ -1,17 +1,22 @@
 "use client"
 import {useEditor, EditorContent} from '@tiptap/react'
 import StarterKit from '@tiptap/starter-kit';
+import ImageResize from 'tiptap-extension-resize-image';
 import TaskItem from '@tiptap/extension-task-item'
 import TaskList from '@tiptap/extension-task-list'
 import Table from '@tiptap/extension-table'
+import { Color } from '@tiptap/extension-color'
+import Highlight from '@tiptap/extension-highlight' 
 import TableCell from '@tiptap/extension-table-cell'
 import TableHeader from '@tiptap/extension-table-header'
 import TableRow from '@tiptap/extension-table-row'
 import Image from '@tiptap/extension-image'
-import ImageResize from "tiptap-extension-resize-image"
 import { useEditorStore } from '@/store/use-editor-store';
-
-
+import Underline from '@tiptap/extension-underline';
+import FontFamily from '@tiptap/extension-font-family';
+import TextStyle from '@tiptap/extension-text-style';
+import Link from '@tiptap/extension-link';
+import TextAlign from '@tiptap/extension-text-align'
 
 export const Editor = () => {
   const { setEditor } = useEditorStore();
@@ -50,16 +55,32 @@ export const Editor = () => {
     immediatelyRender: false,
     extensions: [
       StarterKit,
+      ImageResize,
+      Link.configure({
+        openOnClick: false,
+        autolink: true,
+        defaultProtocol: "https"
+      }),
       TaskItem.configure({
         nested: true,
       }),
       TaskList,
+      TextAlign.configure({
+        types: ["heading", "paragraph"]
+      }),
+      Color,
+      Highlight.configure({
+        multicolor: true,
+      }),
+      TextStyle,
+      FontFamily,
       Table,
-      ImageResize,
+      Image,
       TableCell,
       TableHeader,
       TableRow,
-      Image
+      Image,
+      Underline
     ],
     content: `
         <table>
