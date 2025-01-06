@@ -18,6 +18,8 @@ import TextStyle from '@tiptap/extension-text-style';
 import Link from '@tiptap/extension-link';
 import TextAlign from '@tiptap/extension-text-align'
 
+import { FontSizeExtension } from '@/extensions/font-size';
+
 export const Editor = () => {
   const { setEditor } = useEditorStore();
 
@@ -55,6 +57,7 @@ export const Editor = () => {
     immediatelyRender: false,
     extensions: [
       StarterKit,
+      FontSizeExtension,
       ImageResize,
       Link.configure({
         openOnClick: false,
@@ -80,7 +83,7 @@ export const Editor = () => {
       TableHeader,
       TableRow,
       Image,
-      Underline
+      Underline,
     ],
     content: `
         <table>
@@ -97,6 +100,7 @@ export const Editor = () => {
             </tr>
           </tbody>
         </table>
+        
       `,
   })
   return (
