@@ -18,6 +18,7 @@ import TextStyle from '@tiptap/extension-text-style';
 import Link from '@tiptap/extension-link';
 import TextAlign from '@tiptap/extension-text-align'
 
+import { lineHeightExtension } from '@/extensions/line-height';
 import { FontSizeExtension } from '@/extensions/font-size';
 
 export const Editor = () => {
@@ -57,6 +58,7 @@ export const Editor = () => {
     immediatelyRender: false,
     extensions: [
       StarterKit,
+      lineHeightExtension,
       FontSizeExtension,
       ImageResize,
       Link.configure({
