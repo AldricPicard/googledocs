@@ -1,28 +1,31 @@
 "use client"
+import { useLiveblocksExtension } from "@liveblocks/react-tiptap";
+import { Color } from '@tiptap/extension-color'
+import { useEditorStore } from '@/store/use-editor-store';
 import {useEditor, EditorContent} from '@tiptap/react'
-import StarterKit from '@tiptap/starter-kit';
-import ImageResize from 'tiptap-extension-resize-image';
+import Link from '@tiptap/extension-link';
+import Table from '@tiptap/extension-table'
+import Image from '@tiptap/extension-image'
 import TaskItem from '@tiptap/extension-task-item'
 import TaskList from '@tiptap/extension-task-list'
-import Table from '@tiptap/extension-table'
-import { Color } from '@tiptap/extension-color'
-import Highlight from '@tiptap/extension-highlight' 
-import TableCell from '@tiptap/extension-table-cell'
-import TableHeader from '@tiptap/extension-table-header'
 import TableRow from '@tiptap/extension-table-row'
-import Image from '@tiptap/extension-image'
-import { useEditorStore } from '@/store/use-editor-store';
-import Underline from '@tiptap/extension-underline';
-import FontFamily from '@tiptap/extension-font-family';
+import Highlight from '@tiptap/extension-highlight' 
 import TextStyle from '@tiptap/extension-text-style';
-import Link from '@tiptap/extension-link';
 import TextAlign from '@tiptap/extension-text-align'
+import Underline from '@tiptap/extension-underline';
+import TableCell from '@tiptap/extension-table-cell'
+import FontFamily from '@tiptap/extension-font-family';
+import StarterKit from '@tiptap/starter-kit';
+import ImageResize from 'tiptap-extension-resize-image';
+import TableHeader from '@tiptap/extension-table-header'
 
-import { lineHeightExtension } from '@/extensions/line-height';
-import { FontSizeExtension } from '@/extensions/font-size';
 import { Ruler } from './ruler';
+import { FontSizeExtension } from '@/extensions/font-size';
+import { lineHeightExtension } from '@/extensions/line-height';
+import { Threads } from "./threads";
 
 export const Editor = () => {
+  const liveblocks = useLiveblocksExtension();
   const { setEditor } = useEditorStore();
 
   const editor = useEditor({
@@ -58,7 +61,11 @@ export const Editor = () => {
     },
     immediatelyRender: false,
     extensions: [
-      StarterKit,
+      liveblocks,
+      StarterKit.configure({
+        // The Liveblocks extension comes with its own history handling
+        history: false,
+      }),
       lineHeightExtension,
       FontSizeExtension,
       ImageResize,
@@ -87,14 +94,17 @@ export const Editor = () => {
       TableRow,
       Image,
       Underline,
+      
     ],
     content: ``,
+    
   })
   return (
     <div className='size-full overflow-x-auto bg-[#F9FBFD] px-4 print:p-0 print:bg-white print:overflow-visible'>
       <Ruler />
       <div className="min-w-max flex justify-center w-[816px] py-4 print:py-0 mx-auto print:w-full print:min-w-0">
         <EditorContent editor={editor}/>
+        <Threads editor={editor} />
       </div>
     </div>
   )
