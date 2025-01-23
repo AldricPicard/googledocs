@@ -1,5 +1,6 @@
 "use client"
 
+import { Inbox } from "./inbox";
 import Image from "next/image"
 import Link from "next/link";
 import { DocumentInput } from "./document-input";
@@ -210,6 +211,7 @@ export const Navbar = () => {
             </div>
             <div className="flex gap-3 items-center pl-3">
                 <Avatars/>
+                <Inbox/>
                 <OrganizationSwitcher
                     afterCreateOrganizationUrl="/"
                     afterLeaveOrganizationUrl="/"
