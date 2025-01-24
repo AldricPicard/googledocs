@@ -10,9 +10,6 @@ const liveblocks = new Liveblocks({
 })
 
 export async function POST(req: Request) {
-    if (!liveblocks) {
-        throw new Error("Missing LIVEBLOCKS_SECRET_KEY environment variable.");
-    }
     const {sessionClaims} = await auth();
     if (!sessionClaims) {
         return new Response("Unautorized", {status: 401})
