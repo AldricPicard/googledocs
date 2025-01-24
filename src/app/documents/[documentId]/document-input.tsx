@@ -1,12 +1,14 @@
-import { BsCloudCheck} from "react-icons/bs";
-import { Id } from "../../../../convex/_generated/dataModel";
+import { useStatus } from "@liveblocks/react";
 import { useRef, useState } from "react";
+
+import { BsCloudCheck} from "react-icons/bs";
 import { useMutation } from "convex/react";
-import { api } from "../../../../convex/_generated/api";
 import { useDebounce } from "@/hooks/use-debounce";
 import { toast } from "sonner";
-import { useStatus } from "@liveblocks/react";
 import { LoaderIcon } from "lucide-react";
+
+import { Id } from "../../../../convex/_generated/dataModel";
+import { api } from "../../../../convex/_generated/api";
 
 interface DocumentInputProps {
     id: Id<"documents">,
@@ -80,12 +82,12 @@ export const DocumentInput = ({ title, id}: DocumentInputProps) => {
                         }, 0);
                     }}
                 >
-                        {title}
+                    {title}
                 </span>
             )}
-            {/* {showError && <BsCloudCheck className="size-4"/>}
+            {showError && <BsCloudCheck className="size-4"/>}
             {!showError && !showLoader && <BsCloudCheck className="size-4"/>}
-            {showLoader && <LoaderIcon className="size-4 animate-spin text-muted-foreground"/>} */}
+            {showLoader && <LoaderIcon className="size-4 animate-spin text-muted-foreground"/>}
         </div>
     )
 }
