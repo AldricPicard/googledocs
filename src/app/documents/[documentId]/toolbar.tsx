@@ -313,48 +313,46 @@ const ImageButton = () => {
 
     return ( 
         <>
-        <DropdownMenu>
-            <DropdownMenuTrigger asChild>
-                <button className="h-7 min-w-7 shrink-0 flex flex-col items-center justify-center rounded-sm hover:bg-neutral-200/80 px-1.5 text-sm overflow-hidden">
-                    
-                    <ImageIcon className='size-4'/>
-                </button>
-            </DropdownMenuTrigger>
-            <DropdownMenuContent>
-                <DropdownMenuItem onClick={onUpload}>
-                    <UploadIcon className='size-4 mr-2'/>
-                    Upload
-                </DropdownMenuItem>
-                <DropdownMenuItem onClick={() => setIsDialogOpen(true)}>
-                    <SearchIcon className='size-4 mr-2'/>
-                    <p>Lien URL </p>
-                </DropdownMenuItem>
-            </DropdownMenuContent>
-        </DropdownMenu>
+            <DropdownMenu>
+                <DropdownMenuTrigger asChild>
+                    <button className="h-7 min-w-7 shrink-0 flex flex-col items-center justify-center rounded-sm hover:bg-neutral-200/80 px-1.5 text-sm overflow-hidden">
+                        <ImageIcon className='size-4'/>
+                    </button>
+                </DropdownMenuTrigger>
+                <DropdownMenuContent>
+                    <DropdownMenuItem onClick={onUpload}>
+                        <UploadIcon className='size-4 mr-2'/>
+                        Upload
+                    </DropdownMenuItem>
+                    <DropdownMenuItem onClick={() => setIsDialogOpen(true)}>
+                        <SearchIcon className='size-4 mr-2'/>
+                        <p>URL Link</p>
+                    </DropdownMenuItem>
+                </DropdownMenuContent>
+            </DropdownMenu>
 
-        <Dialog open={isDialogOpen} onOpenChange={setIsDialogOpen}>
-            <DialogContent>
-                <DialogHeader>
-                    <DialogTitle>Insérez l'URL de l'image</DialogTitle>
-                </DialogHeader>
-                <Input
-                    placeholder='URL image'
-                    value={imageUrl}
-                    onChange={(e) => setImageUrl(e.target.value)}
-                    onKeyDown={(e) => {
-                        if (e.key === "Enter") {
-                            handleImageUrlSubmit();
-                        }
-                    }}
-                />
-                <DialogFooter>
-                    <Button onClick={handleImageUrlSubmit}>
-                        Valider
-                    </Button>
-                </DialogFooter>
-            </DialogContent>
-        </Dialog>
-
+            <Dialog open={isDialogOpen} onOpenChange={setIsDialogOpen}>
+                <DialogContent>
+                    <DialogHeader>
+                        <DialogTitle>Insert Image URL</DialogTitle>
+                    </DialogHeader>
+                    <Input
+                        placeholder='Image URL'
+                        value={imageUrl}
+                        onChange={(e) => setImageUrl(e.target.value)}
+                        onKeyDown={(e) => {
+                            if (e.key === "Enter") {
+                                handleImageUrlSubmit();
+                            }
+                        }}
+                    />
+                    <DialogFooter>
+                        <Button onClick={handleImageUrlSubmit}>
+                            Confirm
+                        </Button>
+                    </DialogFooter>
+                </DialogContent>
+            </Dialog>
         </>
     );
 }
