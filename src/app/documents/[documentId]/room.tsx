@@ -12,7 +12,7 @@ import { FullscreenLoader } from "@/components/fullscreen-loader";
 import { getUsers, getDocuments } from "./action";
 import { Id } from "../../../../convex/_generated/dataModel";
 
-type User = {id: string, name: string, avatar: string}
+type User = {id: string, name: string, avatar: string, color: string}
 
 export function Room({ children }: { children: ReactNode }) {
     const params = useParams();

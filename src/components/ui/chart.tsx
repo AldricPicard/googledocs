@@ -68,12 +68,12 @@ const ChartContainer = React.forwardRef<
 ChartContainer.displayName = "Chart"
 
 const ChartStyle = ({ id, config }: { id: string; config: ChartConfig }) => {
-  const colorConfig = Object.entries(config).filter(
-    ([_, config]) => config.theme || config.color
-  )
+  const colorConfig = Object.values(config).filter(
+    (itemConfig) => itemConfig.theme || itemConfig.color
+  );
 
   if (!colorConfig.length) {
-    return null
+    return null;
   }
 
   return (
@@ -84,11 +84,14 @@ const ChartStyle = ({ id, config }: { id: string; config: ChartConfig }) => {
             ([theme, prefix]) => `
 ${prefix} [data-chart=${id}] {
 ${colorConfig
-  .map(([key, itemConfig]) => {
+  .map((itemConfig) => {
+    const key = Object.keys(config).find(
+      (k) => config[k] === itemConfig
+    ); // Récupère la clé associée si nécessaire
     const color =
       itemConfig.theme?.[theme as keyof typeof itemConfig.theme] ||
-      itemConfig.color
-    return color ? `  --color-${key}: ${color};` : null
+      itemConfig.color;
+    return color ? `  --color-${key}: ${color};` : null;
   })
   .join("\n")}
 }
@@ -97,8 +100,9 @@ ${colorConfig
           .join("\n"),
       }}
     />
-  )
-}
+  );
+};
+
 
 const ChartTooltip = RechartsPrimitive.Tooltip
 
