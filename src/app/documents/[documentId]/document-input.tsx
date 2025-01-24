@@ -17,6 +17,7 @@ interface DocumentInputProps {
 
 export const DocumentInput = ({ title, id}: DocumentInputProps) => {
     const status = useStatus();
+    
 
     const [value, setValue] = useState(title);
     const [isPending, setIsPending] = useState(false);
@@ -88,6 +89,7 @@ export const DocumentInput = ({ title, id}: DocumentInputProps) => {
             {showError && <BsCloudCheck className="size-4"/>}
             {!showError && !showLoader && <BsCloudCheck className="size-4"/>}
             {showLoader && <LoaderIcon className="size-4 animate-spin text-muted-foreground"/>}
+            
         </div>
     )
 }
