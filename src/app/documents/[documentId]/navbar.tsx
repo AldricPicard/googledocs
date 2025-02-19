@@ -97,6 +97,17 @@ export const Navbar = ({ data }: NavbarProps) => {
         onDownload(blob, `${data.title}.text`)
     }
 
+    const onSavePDF = () => {
+        if (!editor) return;
+    
+        const content = editor.getText();
+        const blob = new Blob([content], {
+            type: "application/pdf",
+        });
+        onDownload(blob, `${data.title}.pdf`);
+    }
+    
+
     return (
         <nav className="flex items-center justify-between">
             <div className="flex gap-2 items-center">
@@ -126,7 +137,7 @@ export const Navbar = ({ data }: NavbarProps) => {
                                                 <GlobeIcon className="size-4 mr-2" />
                                                 HTML
                                             </MenubarItem>
-                                            <MenubarItem onClick={onSaveJSON}>
+                                            <MenubarItem onClick={onSavePDF}>
                                                 <BsFilePdf className="size-4 mr-2" />
                                                 PDF
                                             </MenubarItem>
