@@ -126,7 +126,7 @@ export const Navbar = ({ data }: NavbarProps) => {
                                                 <GlobeIcon className="size-4 mr-2" />
                                                 HTML
                                             </MenubarItem>
-                                            <MenubarItem onClick={() => window.print()}>
+                                            <MenubarItem onClick={onSaveJSON}>
                                                 <BsFilePdf className="size-4 mr-2" />
                                                 PDF
                                             </MenubarItem>
