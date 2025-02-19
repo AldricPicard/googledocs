@@ -114,7 +114,7 @@ export const Navbar = ({ data }: NavbarProps) => {
                                 <MenubarContent className="print:hidden">
                                     <MenubarSub>
                                         <MenubarSubTrigger>
-                                            <FileIcon className="size4 mr-2" />
+                                            <FileIcon className="size-4 mr-2" />
                                             Save
                                         </MenubarSubTrigger>
                                         <MenubarSubContent>
